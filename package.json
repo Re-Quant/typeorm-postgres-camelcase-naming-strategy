@@ -3,7 +3,7 @@
   "description": "Pascal/Camel Case naming for everything in the PostgreSQL",
   "license": "GPL-3.0",
   "private": false,
-  "version": "1.0.0",
+  "version": "1.0.1",
   "bugs": {
     "url": "https://github.com/korniychuk/wallaby-ts-webpack-starter/issues"
   },

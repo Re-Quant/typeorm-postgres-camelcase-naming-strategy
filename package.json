@@ -1,7 +1,7 @@
 {
-  "name": "wallaby-ts-webpack",
-  "description": "",
-  "license": "MIT",
+  "name": "@z-brain/typeorm-postgres-naming-strategy",
+  "description": "Pascal/Camel Case naming for everything in the PostgreSQL",
+  "license": "GPL-3.0",
   "private": true,
   "version": "1.0.0",
   "bugs": {
@@ -28,7 +28,8 @@
     "test:watch": "npm run test -- --watch",
     "tpl-repo": "tools/merge-with-repository-template.sh",
     "tpl-repo:check": "npm run tpl-repo -- check",
-    "tpl-repo:merge": "npm run tpl-repo -- merge"
+    "tpl-repo:merge": "npm run tpl-repo -- merge",
+    "gen-public-package.json": "tools/gen-public-package.js"
   },
   "dependencies": {
     "@types/lodash": "^4.14.0",

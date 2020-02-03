@@ -1,0 +1,55 @@
+name: Node.js Package
+
+on:
+  push:
+    branches:
+      - master
+      - develop
+  pull_request:
+    branches:
+      - master
+      - develop
+
+jobs:
+  prepush-and-build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+      - name: Yarn install
+        run: yarn install
+      - name: Runing prepush
+        run: npm run pre-push
+      - name: Archive production artifacts
+        uses: actions/upload-artifact@v1
+        with:
+          name: dist
+          path: dist
+
+  publish:
+    needs: prepush-and-build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+      - name: Download 'dist' from the previous Job
+        uses: actions/download-artifact@v1
+        with:
+          name: dist
+      - name: Set GIT username & email
+        run: git config --global user.name 'GIT Workflow CI' && git config --global user.email dev@korniychuk.pro
+      - run: npm version patch -m 'Update package version version to %s'
+      - name: Generate public package.json
+        run: npm run gen-public-package.json
+      - name: Generate public README.md
+        run: cp README.md dist/
+      - name: NPM Authentication
+        run: echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
+        env:
+          NPM_TOKEN: ${{secrets.npm_token}}
+      - run: npm publish dist --access public
+      - run: git push --no-verify & git push --tags --no-verify

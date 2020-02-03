@@ -1,0 +1,41 @@
+{
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "incremental": true,
+    "lib": [
+      "dom",
+      "es2019"
+    ],
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "noEmitHelpers": true,
+    "removeComments": true,
+    "sourceMap": true,
+    "strict": true,
+    "target": "es2019",
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "types": [
+      "jest"
+    ],
+    "outDir": "./dist",
+    "baseUrl": "./src",
+    "rootDir": "./src"
+  },
+  "include": [
+    "src/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist"
+  ],
+  "compileOnSave": false,
+  "buildOnSave": false,
+  "atom": {
+    "rewriteTsconfig": false
+  }
+}

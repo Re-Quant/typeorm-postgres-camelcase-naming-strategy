@@ -2,7 +2,7 @@
   "name": "@z-brain/typeorm-postgres-naming-strategy",
   "description": "Pascal/Camel Case naming for everything in the PostgreSQL",
   "license": "GPL-3.0",
-  "private": true,
+  "private": false,
   "version": "1.0.0",
   "bugs": {
     "url": "https://github.com/korniychuk/wallaby-ts-webpack-starter/issues"

@@ -30,7 +30,7 @@ Unique Index        | `UQIDX_{table}_{cols}_{hash}`                         | `U
 
 `yarn add @z-brain/typeorm-postgres-naming-strategy`  
 or  
-`yarn add @z-brain/typeorm-postgres-naming-strategy`
+`npm i -s @z-brain/typeorm-postgres-naming-strategy`
 
 ### Configuring
 

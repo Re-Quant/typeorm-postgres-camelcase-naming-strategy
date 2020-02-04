@@ -1,16 +1,17 @@
 {
   "name": "@z-brain/typeorm-postgres-naming-strategy",
   "description": "Pascal/Camel Case naming for everything in the PostgreSQL",
+  "author": "Anton Korniychuk <dev@korniychuk.pro>",
   "license": "GPL-3.0",
   "private": false,
   "version": "1.0.0",
   "bugs": {
-    "url": "https://github.com/korniychuk/wallaby-ts-webpack-starter/issues"
+    "url": "https://github.com/z-brain/typeorm-postgres-naming-strategy/issues"
   },
-  "homepage": "https://github.com/korniychuk/wallaby-ts-webpack-starter#readme",
+  "homepage": "https://github.com/z-brain/typeorm-postgres-naming-strategy",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/korniychuk/wallaby-ts-webpack-starter.git"
+    "url": "git@github.com:z-brain/typeorm-postgres-naming-strategy.git"
   },
   "engines": {
     "node": "^12.14.1",

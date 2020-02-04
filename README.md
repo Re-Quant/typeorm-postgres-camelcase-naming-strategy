@@ -1,57 +1,63 @@
-# Modern Wallaby JS Starter (TypeScript + Babel + Jest)
+# Z-Brain TypeORM PostgreSQL Naming Strategy
+
+Pascal/Camel Case naming for everything in the PostgreSQL
 
 *Notice: If you have any propositions feel free to make an issue or create a pull request.*
 
 ## Features
 
-* Wallaby JS works out of the box without any additional config  
-  Notice: How to run in "Without Configuration" mode ([Official Wallaby JS Guide](https://wallabyjs.com/docs/intro/config.html#automatic-configuration))
-* [ESLint](https://eslint.org) for linting JS & TS files ([TSLint is deprecated in 2019](https://github.com/palantir/tslint#tslint)). Basic rules configured.
-* Very strict linting [config](/src/.eslintrc.js) ([airbnb](https://www.npmjs.com/package/eslint-config-airbnb-base) + [unicorn](https://www.npmjs.com/package/eslint-plugin-unicorn) + [some other plugins](/src/.eslintrc.js#L11))
-* Unit Testing via [Jest](https://jestjs.io/) 24+
-* Additional Jest matchers from [`jest-extended`](https://github.com/jest-community/jest-extended) configured
-* [TypeScript](http://typescriptlang.org/) 3.7+ via [Babel](https://babeljs.io/docs/en/babel-preset-typescript)
-* Yarn for packages installation and [`check-yarn`](/tools/check-yarn.js) utility to prevent packages installation via `npm`
-* [`.nvmrc`](https://github.com/nvm-sh/nvm#nvmrc)
-* Nothing platform related. This repository template can be used for NodeJS and for Browser development.
-* Git hooks via [husky](https://www.npmjs.com/package/husky)
-* [Utility](/tools/merge-with-repository-template.sh) to automatically pull updates from this template repository (`npm run tpl-repo:merge`)
+* All constraint names appended with 8-char hash for uniqueness. Example: `eed18e0e`
+* All names trimmed to 63 bytes including 8-char hash if the name is too long (in most cases length === bytes number, however not always).
 
-## Ways to use
+Naming entity       | Case                                                  | Examples
+--------------------|-------------------------------------------------------|--------
+Table               | `PascalCase`                                          | `Users`, `MySuperTable`
+Column              | `CamelCase`                                           | `id`, `mySuperColumn`
+Enum                | (not supported by TypeORM yet)                        |
+Primary Key         | `PK_{table}_{cols}_{hash}`                            | `PK_Instruments_id_bd441074`, `PK_MySuperTable_email,pwdHash_d1d1d1d1`
+Unique Constrain    | `UQ_{table}_{cols}_{hash}`                            | `UQ_Instruments_code_051d8d38`, `UQ_MySuperTable_firstName,lastName_d1d1d1d1`
+Default Constrain   | `DF_{table}_{col}_{hash}`                             | `UQ_Users_email`, `DF_MySuperTable_firstName`
+Relation Constrain  | `REL_{table}_{cols}_{where}_{hash}`                   | TODO
+Check Constrain     | `CHK_{table}_{expression}_{hash}`                     | TODO
+Exclusion Constrain | `XCL_{table}_{expression}_{hash}`                     | TODO
+Foreign Key         | `FK_{table}_{targetTable}_{cols}_{targetCols}_{hash}` | `FK_TradingPairs_Instruments_quotedInstrumentId_id_fc68de3f`
+Index               | `IDX_{table}_{cols}_{hash}`                           | `IDX_Tickers_exchangeId,symbol_c8090854`
+Unique Index        | `UQIDX_{table}_{cols}_{hash}`                         | `UQIDX_Tickers_exchangeId,symbol_c8090854`
 
-1. Clone as is
+## How to use
 
-    1. `git clone git@github.com:korniychuk/wallaby-ts-starter.git`
-    2. `cd wallaby-ts-starter`
-    3. `yarn`
-2. Fork
+### Installing
 
-    0. Click **Fork** git button
-    1. `git clone git@github.com:YOUR_GIT_NAME/wallaby-ts-starter.git`
-    2. `cd wallaby-ts-starter`
-    3. `yarn`
-3. Creating from template
+`yarn add @z-brain/typeorm-postgres-naming-strategy`  
+or  
+`yarn add @z-brain/typeorm-postgres-naming-strategy`
 
-    0. Click **Fork** git button
-    1. Create new repository and specify template ![template](./resources/readme.git-create-from-template.png)
-    1. `git clone git@github.com:YOUR_GIT_NAME/NEW_REPOSITORY_NAME.git`
-    2. `cd NEW_REPOSITORY_NAME`
-    3. `yarn`
-4. Using with already cloned repository as an additional origin for pulling updates
+### Configuring
 
-    1. Automatically
-    
-       ```bash
-       npm run merge-tpl-repo
-       ```
-    
-    2. Manually
+`/ormconfig.ts`
+```typescript
+import { TypeORMPostgresNamingStrategy } from '@z-brain/typeorm-postgres-naming-strategy';
 
-        1. `git remote add template git@github.com:korniychuk/wallaby-ts-starter.git`
-        2. `git fetch template`
-        3. `git merge --allow-unrelated-histories template/master`
+// Store an instance separately for reuse methods in you app
+export const typeORMNamingStrategy = new TypeORMPostgresNamingStrategy();
 
-## How to
+// TypeORM connection config for PostgreSQL
+export const defaultConnection: ConnectionOptions = {
+  // ...
+  namingStrategy: typeORMNamingStrategy,
+};
+```
+
+## Development notes
+
+### Quick Start
+
+```bash
+cd /code/z-brain
+git clone git@github.com:z-brain/typeorm-postgres-naming-strategy.git
+cd typeorm-postgres-naming-strategy
+yarn install
+```
 
 ### How to use NodeJS version from the `.nvmrc`
 
@@ -81,6 +87,21 @@
 
   `npm run test -- src/my.spec.ts`  
   `npm run test:watch -- src/my.spec.ts`
+
+### How to build and publish NPM package
+
+*NPM Token:* `367a...ce73`
+
+CI configuration details here: [.github/workflows/npmpublish.yml](.github/workflows/npmpublish.yml)
+
+```bash
+npm run pre-push
+&& npm version patch -m 'Update package version version to %s'
+&& npm run gen-public-package.json
+&& cp README.md dist/
+&& npm publish dist --access public
+&& git push --no-verify && git push --tags --no-verify
+```
 
 ## Author
 

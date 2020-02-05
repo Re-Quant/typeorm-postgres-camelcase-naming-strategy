@@ -1,17 +1,17 @@
 {
-  "name": "@z-brain/typeorm-postgres-naming-strategy",
+  "name": "@z-brain/typeorm-postgres-camelcase-naming-strategy",
   "description": "Pascal/Camel Case naming for everything in the PostgreSQL",
   "author": "Anton Korniychuk <dev@korniychuk.pro>",
   "license": "GPL-3.0",
   "private": false,
   "version": "1.0.2",
   "bugs": {
-    "url": "https://github.com/z-brain/typeorm-postgres-naming-strategy/issues"
+    "url": "https://github.com/z-brain/typeorm-postgres-camelcase-naming-strategy/issues"
   },
-  "homepage": "https://github.com/z-brain/typeorm-postgres-naming-strategy",
+  "homepage": "https://github.com/z-brain/typeorm-postgres-camelcase-naming-strategy",
   "repository": {
     "type": "git",
-    "url": "git@github.com:z-brain/typeorm-postgres-naming-strategy.git"
+    "url": "git@github.com:z-brain/typeorm-postgres-camelcase-naming-strategy.git"
   },
   "engines": {
     "node": "^12.14.1",

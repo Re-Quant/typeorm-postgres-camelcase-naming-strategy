@@ -16,8 +16,10 @@ interface IndexInfo {
 const PG_NAMEDATALEN = 63;
 const HASH_LEN = 8;
 
-// TODO: implement column transformation
-export class TypeORMPostgresNamingStrategy extends DefaultNamingStrategy {
+// TODO: 1. implement column transformation
+// TODO: 2. add unit tests
+// TODO: 1. implement enum transformation
+export class TypeORMPostgresCamelCaseNamingStrategy extends DefaultNamingStrategy {
   private entitiesByTableName: { [tableName: string]: TableMetadataArgs } = {};
 
   public tableName(targetName: string, userSpecifiedName: string | undefined): string {

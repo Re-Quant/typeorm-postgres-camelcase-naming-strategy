@@ -28,18 +28,18 @@ Unique Index        | `UQIDX_{table}_{cols}_{hash}`                         | `U
 
 ### Installing
 
-`yarn add @z-brain/typeorm-postgres-naming-strategy`  
+`yarn add @z-brain/typeorm-postgres-camelcase-naming-strategy`  
 or  
-`npm i -s @z-brain/typeorm-postgres-naming-strategy`
+`npm i -s @z-brain/typeorm-postgres-camelcase-naming-strategy`
 
 ### Configuring
 
 `/ormconfig.ts`
 ```typescript
-import { TypeORMPostgresNamingStrategy } from '@z-brain/typeorm-postgres-naming-strategy';
+import { TypeORMPostgresCamelCaseNamingStrategy } from '@z-brain/typeorm-postgres-camelcase-naming-strategy';
 
 // Store an instance separately for reuse methods in you app
-export const typeORMNamingStrategy = new TypeORMPostgresNamingStrategy();
+export const typeORMNamingStrategy = new TypeORMPostgresCamelCaseNamingStrategy();
 
 // TypeORM connection config for PostgreSQL
 export const defaultConnection: ConnectionOptions = {
@@ -54,8 +54,8 @@ export const defaultConnection: ConnectionOptions = {
 
 ```bash
 cd /code/z-brain
-git clone git@github.com:z-brain/typeorm-postgres-naming-strategy.git
-cd typeorm-postgres-naming-strategy
+git clone git@github.com:z-brain/typeorm-postgres-camelcase-naming-strategy.git
+cd typeorm-postgres-camelcase-naming-strategy
 yarn install
 ```
 

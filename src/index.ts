@@ -1,1 +1,1 @@
-export * from './typeorm-postgres-naming-strategy';
+export * from './typeorm-postgres-camelcase-naming-strategy';

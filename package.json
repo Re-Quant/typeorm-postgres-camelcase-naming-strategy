@@ -14,9 +14,9 @@
     "url": "git@github.com:z-brain/typeorm-postgres-camelcase-naming-strategy.git"
   },
   "engines": {
-    "node": "^12.14.1",
-    "npm": "^6.13.4",
-    "yarn": "^1.21.1"
+    "node": ">=10.0.0",
+    "npm": ">=6.0.0",
+    "yarn": ">=1.20.0"
   },
   "scripts": {
     "build": "rimraf dist && tsc -p tsconfig.build.json",
@@ -33,8 +33,6 @@
     "gen-public-package.json": "tools/gen-public-package.js"
   },
   "dependencies": {
-    "@types/lodash": "^4.14.0",
-    "@types/pluralize": "^0.0.29",
     "lodash": "^4.0.0",
     "pluralize": "^8.0.0"
   },
@@ -47,8 +45,10 @@
     "@babel/preset-env": "~7.7.6",
     "@babel/preset-typescript": "~7.7.4",
     "@types/jest": "~25.1.0",
-    "@typescript-eslint/eslint-plugin": "~2.14.0",
+    "@types/lodash": "^4.14.0",
     "@types/node": "^12.0.0",
+    "@types/pluralize": "^0.0.29",
+    "@typescript-eslint/eslint-plugin": "~2.14.0",
     "@typescript-eslint/parser": "~2.14.0",
     "eslint": "~6.8.0",
     "eslint-config-airbnb-base": "~14.0.0",

@@ -4,7 +4,7 @@
   "author": "Anton Korniychuk <dev@korniychuk.pro>",
   "license": "GPL-3.0",
   "private": false,
-  "version": "1.0.3",
+  "version": "1.0.4",
   "bugs": {
     "url": "https://github.com/z-brain/typeorm-postgres-camelcase-naming-strategy/issues"
   },

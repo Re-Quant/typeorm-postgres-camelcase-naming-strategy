@@ -46,6 +46,8 @@ export const defaultConnection: ConnectionOptions = {
   // ...
   namingStrategy: typeORMNamingStrategy,
 };
+
+module.exports = [defaultConnection];
 ```
 
 ## Development notes

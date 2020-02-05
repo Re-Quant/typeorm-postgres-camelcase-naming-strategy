@@ -16,10 +16,10 @@ Column              | `CamelCase`                                           | `i
 Enum                | (not supported by TypeORM yet)                        |
 Primary Key         | `PK_{table}_{cols}_{hash}`                            | `PK_Instruments_id_bd441074`, `PK_MySuperTable_email,pwdHash_d1d1d1d1`
 Unique Constrain    | `UQ_{table}_{cols}_{hash}`                            | `UQ_Instruments_code_051d8d38`, `UQ_MySuperTable_firstName,lastName_d1d1d1d1`
-Default Constrain   | `DF_{table}_{col}_{hash}`                             | `UQ_Users_email`, `DF_MySuperTable_firstName`
-Relation Constrain  | `REL_{table}_{cols}_{where}_{hash}`                   | TODO
-Check Constrain     | `CHK_{table}_{expression}_{hash}`                     | TODO
-Exclusion Constrain | `XCL_{table}_{expression}_{hash}`                     | TODO
+Default Constrain   | `DF_{table}_{col}_{hash}`                             | `DF_Users_email_d1d1d1d1`, `DF_MySuperTable_firstName_d1d1d1d1`
+Relation Constrain  | `REL_{table}_{cols}_{where}_{hash}`                   | TODO example
+Check Constrain     | `CHK_{table}_{expression}_{hash}`                     | TODO example
+Exclusion Constrain | `XCL_{table}_{expression}_{hash}`                     | TODO example
 Foreign Key         | `FK_{table}_{targetTable}_{cols}_{targetCols}_{hash}` | `FK_TradingPairs_Instruments_quotedInstrumentId_id_fc68de3f`
 Index               | `IDX_{table}_{cols}_{hash}`                           | `IDX_Tickers_exchangeId,symbol_c8090854`
 Unique Index        | `UQIDX_{table}_{cols}_{hash}`                         | `UQIDX_Tickers_exchangeId,symbol_c8090854`

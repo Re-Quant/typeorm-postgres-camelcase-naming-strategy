@@ -1,8 +1,17 @@
 # Z-Brain TypeORM PostgreSQL Naming Strategy
 
-![NPM Package](https://github.com/z-brain/typeorm-postgres-camelcase-naming-strategy/workflows/NPM%20Package/badge.svg)
-[![npm version](https://img.shields.io/npm/v/@z-brain/typeorm-postgres-camelcase-naming-strategy.svg)](https://badge.fury.io/js/%40z-brain%2Ftypeorm-postgres-camelcase-naming-strategy)
-[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+<p>
+  <a target="_blank" href="https://github.com/z-brain/typeorm-postgres-camelcase-naming-strategy/actions?query=workflow%3A%22Build%22">
+    <img alt="Build status" src="https://github.com/z-brain/typeorm-postgres-camelcase-naming-strategy/workflows/Build/badge.svg">
+  </a>
+  <a target="_blank" href="https://www.npmjs.com/package/@z-brain/typeorm-postgres-camelcase-naming-strategy">
+    <img alt="NPM version" src="https://img.shields.io/npm/v/@z-brain/typeorm-postgres-camelcase-naming-strategy.svg">
+  </a>
+  <a target="_blank" href="https://www.gnu.org/licenses/gpl-3.0">
+    <img alt="License: GPL v3" src="https://img.shields.io/badge/License-GPLv3-blue.svg">
+  </a>
+</p>
+
 
 Pascal/Camel Case naming for everything in the PostgreSQL
 

@@ -1,4 +1,4 @@
-# Z-Brain TypeORM PostgreSQL Naming Strategy
+# Z-Brain TypeORM PostgreSQL Camelcase Naming Strategy
 
 <p>
   <a target="_blank" href="https://github.com/z-brain/typeorm-postgres-camelcase-naming-strategy/actions?query=workflow%3A%22Build%22">

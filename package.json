@@ -20,16 +20,16 @@
   },
   "scripts": {
     "build": "rimraf dist && tsc -p tsconfig.build.json",
-    "build:prod": "npm run build",
+    "build:prod": "yarn run build",
     "lint": "eslint --ext .js,.ts src/**",
-    "lint:fix": "npm run lint -- --fix",
-    "pre-push": "npm run lint && npm run test && npm run build:prod && npm run tpl-repo:check",
+    "lint:fix": "yarn run lint -- --fix",
+    "pre-push": "yarn run lint && yarn run test && yarn run build:prod && yarn run tpl-repo:check",
     "preinstall": "node ./tools/check-yarn.js",
     "test": "jest -c jest.config.js",
-    "test:watch": "npm run test -- --watch",
+    "test:watch": "yarn run test -- --watch",
     "tpl-repo": "tools/merge-with-repository-template.sh",
-    "tpl-repo:check": "npm run tpl-repo -- check",
-    "tpl-repo:merge": "npm run tpl-repo -- merge",
+    "tpl-repo:check": "yarn run tpl-repo -- check",
+    "tpl-repo:merge": "yarn run tpl-repo -- merge",
     "gen-public-package.json": "tools/gen-public-package.js"
   },
   "dependencies": {
@@ -66,7 +66,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-push": "npm run pre-push",
+      "pre-push": "yarn run pre-push",
       "post-merge": "IS_YARN=true yarn install"
     }
   }

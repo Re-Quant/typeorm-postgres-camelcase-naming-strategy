@@ -22,10 +22,16 @@ const HASH_LEN = 8;
 export class TypeORMPostgresCamelCaseNamingStrategy extends DefaultNamingStrategy {
   private entitiesByTableName: { [tableName: string]: TableMetadataArgs } = {};
 
+  public constructor(
+    private readonly entitySuffix: string = 'Entity',
+  ) {
+    super();
+  }
+
   public tableName(targetName: string, userSpecifiedName: string | undefined): string {
     if (userSpecifiedName) return userSpecifiedName;
 
-    return pascalCase(pluralize.plural(targetName));
+    return pascalCase(pluralize.plural(_.trimEnd(targetName, this.entitySuffix)));
   }
 
   public primaryKeyName(tableOrName: Table|string, columnNames: string[]): string {

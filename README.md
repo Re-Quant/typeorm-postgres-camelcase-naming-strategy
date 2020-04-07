@@ -110,11 +110,11 @@ yarn install
 CI configuration details here: [.github/workflows/npmpublish.yml](.github/workflows/npmpublish.yml)
 
 ```bash
-yarn run pre-push
-&& npm version patch -m 'Update package version version to %s'
-&& yarn run gen-public-package.json
-&& cp README.md dist/
-&& npm publish dist --access public
+yarn run pre-push \
+&& npm version patch -m 'Update package version version to %s' \
+&& yarn run gen-public-package.json \
+&& cp README.md dist/ \
+&& npm publish dist --access public \
 && git push --no-verify && git push --tags --no-verify
 ```
 

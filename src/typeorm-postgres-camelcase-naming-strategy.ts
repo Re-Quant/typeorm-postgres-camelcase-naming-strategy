@@ -31,7 +31,10 @@ export class TypeORMPostgresCamelCaseNamingStrategy extends DefaultNamingStrateg
   public tableName(targetName: string, userSpecifiedName: string | undefined): string {
     if (userSpecifiedName) return userSpecifiedName;
 
-    return pascalCase(pluralize.plural(_.trimEnd(targetName, this.entitySuffix)));
+    const targetNameWithoutSuffix = targetName.endsWith(this.entitySuffix)
+                                    ? targetName.slice(0, this.entitySuffix.length * -1)
+                                    : targetName;
+    return pascalCase(pluralize.plural(targetNameWithoutSuffix));
   }
 
   public primaryKeyName(tableOrName: Table|string, columnNames: string[]): string {

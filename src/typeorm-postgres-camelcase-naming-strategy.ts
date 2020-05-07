@@ -16,25 +16,58 @@ interface IndexInfo {
 const PG_NAMEDATALEN = 63;
 const HASH_LEN = 8;
 
+interface Config {
+  /** Suffix that should be omitted in the DB table name */
+  entitySuffix: string | string[];
+  /** Not pluralized suffix */
+  inDbSuffix: string | string[];
+}
+
+interface ConfigInternal {
+  entitySuffixes: string[];
+  inDbSuffixes: string[];
+}
+
+const defaultConfig: Config = {
+  entitySuffix: 'Entity',
+  inDbSuffix: 'Zip',
+};
+
 // TODO: 1. implement column transformation
 // TODO: 2. add unit tests
 // TODO: 1. implement enum transformation
 export class TypeORMPostgresCamelCaseNamingStrategy extends DefaultNamingStrategy {
   private entitiesByTableName: { [tableName: string]: TableMetadataArgs } = {};
 
+  private readonly config: ConfigInternal;
+
   public constructor(
-    private readonly entitySuffix: string = 'Entity',
+    customConfig: Partial<Config> = {},
   ) {
     super();
+    const config = { ...defaultConfig, ..._.omitBy(customConfig, __.isEmpty) };
+
+    this.config = {
+      entitySuffixes:     _.castArray(config.entitySuffix),
+      inDbSuffixes: _.castArray(config.inDbSuffix),
+    };
   }
 
   public tableName(targetName: string, userSpecifiedName: string | undefined): string {
     if (userSpecifiedName) return userSpecifiedName;
 
-    const targetNameWithoutSuffix = targetName.endsWith(this.entitySuffix)
-                                    ? targetName.slice(0, this.entitySuffix.length * -1)
+    const entitySuffix = this.config.entitySuffixes.find(suffix => targetName.endsWith(suffix));
+    const targetNameWithoutEntitySuffix = entitySuffix
+                                    ? targetName.slice(0, entitySuffix.length * -1)
                                     : targetName;
-    return pascalCase(pluralize.plural(targetNameWithoutSuffix));
+
+    const inDbSuffix = this.config.inDbSuffixes.find(suffix => targetNameWithoutEntitySuffix.endsWith(suffix));
+    const targetNameWithoutInDbSuffix = inDbSuffix
+                                    ? targetNameWithoutEntitySuffix.slice(0, inDbSuffix.length * -1)
+                                    : targetNameWithoutEntitySuffix;
+
+    const transformedName = pascalCase(pluralize.plural(targetNameWithoutInDbSuffix));
+    return inDbSuffix ? transformedName + inDbSuffix : transformedName;
   }
 
   public primaryKeyName(tableOrName: Table|string, columnNames: string[]): string {

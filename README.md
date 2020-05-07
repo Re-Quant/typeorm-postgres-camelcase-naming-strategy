@@ -21,6 +21,10 @@ Pascal/Camel Case naming for everything in the PostgreSQL
 
 * All constraint names appended with 8-char hash for uniqueness. Example: `eed18e0e`
 * All names trimmed to 63 bytes including 8-char hash if the name is too long (in most cases length === bytes number, however not always).
+* There is an ability to have some suffixes to entity classes and omit these suffixes in the DB table names.  
+  Example: `PublicTradeEntity` -> `PublicTrades` (default entity suffix is `Entity`)
+* There is an ability to have some in-db suffixes on entity classes that should not be pluralized and should be added as is to the DB table names.  
+  Example: `PublicTradeZipEntity` -> `PublicTradesZip` (default in-db suffix is `Zip`)
 
 Naming entity       | Case                                                  | Examples
 --------------------|-------------------------------------------------------|--------

@@ -16,11 +16,11 @@ interface IndexInfo {
 const PG_NAMEDATALEN = 63;
 const HASH_LEN = 8;
 
-interface Config {
+interface CustomConfig {
   /** Suffix that should be omitted in the DB table name */
-  entitySuffix: string | string[];
+  entitySuffix?: string | string[];
   /** Not pluralized suffix */
-  inDbSuffix: string | string[];
+  inDbSuffix?: string | string[];
 }
 
 interface ConfigInternal {
@@ -28,7 +28,7 @@ interface ConfigInternal {
   inDbSuffixes: string[];
 }
 
-const defaultConfig: Config = {
+const defaultConfig: CustomConfig = {
   entitySuffix: 'Entity',
   inDbSuffix: 'Zip',
 };
@@ -42,7 +42,7 @@ export class TypeORMPostgresCamelCaseNamingStrategy extends DefaultNamingStrateg
   private readonly config: ConfigInternal;
 
   public constructor(
-    customConfig: Partial<Config> = {},
+    customConfig: CustomConfig = {},
   ) {
     super();
     const config = { ...defaultConfig, ..._.omitBy(customConfig, __.isEmpty) };

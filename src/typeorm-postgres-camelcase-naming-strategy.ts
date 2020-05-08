@@ -226,10 +226,11 @@ export class TypeORMPostgresCamelCaseNamingStrategy extends DefaultNamingStrateg
     };
   }
 
+  /**
+   * This is a single place where we can prepare columns for all naming functions.
+   */
   private prepareColumns(columnNames: string[]): string[] {
-    const clonedColumnNames = [...columnNames];
-    clonedColumnNames.sort();
-    return clonedColumnNames;
+    return columnNames;
   }
 
   private prepareTableName(tableOrName: Table | string): string {
